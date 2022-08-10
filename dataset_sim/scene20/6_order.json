@@ -1,0 +1,118 @@
+{
+  "1": {
+    "id": 1,
+    "occlusion": 0.0,
+    "children": [],
+    "parents": [
+      {
+        "id": 6,
+        "depth_diff": 3.3966598510742188,
+        "edge_size": 241.0
+      }
+    ],
+    "total_covered_edge": 0,
+    "layer": 3
+  },
+  "2": {
+    "id": 2,
+    "occlusion": 0.0,
+    "children": [],
+    "parents": [
+      {
+        "id": 0,
+        "depth_diff": 0.0,
+        "edge_size": 0.0
+      }
+    ],
+    "total_covered_edge": 0,
+    "layer": 0
+  },
+  "3": {
+    "id": 3,
+    "occlusion": 0.0,
+    "children": [
+      {
+        "id": 6,
+        "depth_diff": 0.9909210205078125,
+        "edge_size": 405.0
+      }
+    ],
+    "parents": [
+      {
+        "id": 0,
+        "depth_diff": 0.0,
+        "edge_size": 0.0
+      }
+    ],
+    "total_covered_edge": 405.0,
+    "layer": 0
+  },
+  "4": {
+    "id": 4,
+    "occlusion": 0.011800000444054604,
+    "children": [],
+    "parents": [
+      {
+        "id": 5,
+        "depth_diff": 0.37359619140625,
+        "edge_size": 484.0
+      }
+    ],
+    "total_covered_edge": 0,
+    "layer": 1
+  },
+  "5": {
+    "id": 5,
+    "occlusion": 0.0,
+    "children": [
+      {
+        "id": 4,
+        "depth_diff": 0.37359619140625,
+        "edge_size": 484.0
+      }
+    ],
+    "parents": [
+      {
+        "id": 0,
+        "depth_diff": 0.0,
+        "edge_size": 0.0
+      }
+    ],
+    "total_covered_edge": 484.0,
+    "layer": 0
+  },
+  "6": {
+    "id": 6,
+    "occlusion": 0.009499999694526196,
+    "children": [
+      {
+        "id": 1,
+        "depth_diff": 3.3966598510742188,
+        "edge_size": 241.0
+      }
+    ],
+    "parents": [
+      {
+        "id": 3,
+        "depth_diff": 0.9909210205078125,
+        "edge_size": 405.0
+      }
+    ],
+    "total_covered_edge": 241.0,
+    "layer": 1
+  },
+  "7": {
+    "id": 7,
+    "occlusion": 0.05270000174641609,
+    "children": [],
+    "parents": [
+      {
+        "id": 0,
+        "depth_diff": 0.0,
+        "edge_size": 0.0
+      }
+    ],
+    "total_covered_edge": 0,
+    "layer": 0
+  }
+}
