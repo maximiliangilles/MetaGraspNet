@@ -4,7 +4,7 @@
 </p>
 
 # News [dd/mm/yyyy]
-- [27/10/2022] **Grasp Sampling Code Online:** Sample parallel-jaw and vacuum grasp labels for custom objects.
+- [27/10/2022] **Grasp Sampling Code Online:** Code for sampling of parallel-jaw and vacuum grasp labels available.
 - [26/07/2022] **Additional Synthetic Data:** Additional training data available.
 
 # Installation
@@ -152,20 +152,13 @@ You can explore the individuals objects labels with:
 
 **Parallel-Jaw Grasp Labels**
 ```
-python ./Scripts/visualize_labels.py --root ./models --dataset_name models_ifl --object 008 --parallel_grasps --simulation --score_min 0.8 --max_grasps 100
+python ./Scripts/visualize_labels.py --root ./models --dataset_name models_ifl --object 064 --parallel_grasps --simulation --score_min 0.8 --max_grasps 100
 ```
-<p align="center">
-<img src="./media/pj_grasp_labels.png" width="70%">
-</p>
-
 
 **Vacuum Grasp Labels**
 ```
 python ./Scripts/visualize_labels.py --root ./models --dataset_name models_ifl --object 064 --suction_grasps --analytical --max_grasps 500
 ```
-<p align="center">
-<img src="./media/sc_grasp_labels.png" width="50%">
-</p>
 
 **Keypoints**
 ```
