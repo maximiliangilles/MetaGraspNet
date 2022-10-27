@@ -4,6 +4,7 @@
 </p>
 
 # News [dd/mm/yyyy]
+- [27/10/2022] **Grasp Sampling Code Online:** Sample parallel-jaw and vacuum grasp labels for custom objects.
 - [26/07/2022] **Additional Synthetic Data:** Additional training data available.
 
 # Installation
@@ -32,7 +33,7 @@ If you find our work useful, please consider citing.
 Ambidextrous Bin Picking via Physics-based Metaverse Synthesis},
     author    = {Maximilian, Gilles and Chen, Yuhao and Winter, Tim Robin and Zeng, E. Zhixuan and Wong, Alexander},
     year      = {2022},
-    booktitle = {Accepted for IEEE CASE 2022}
+    booktitle = {IEEE International Conference on Automation Science and Engineering (CASE) [in press]}
 }
 ```
 
@@ -153,10 +154,19 @@ You can explore the individuals objects labels with:
 ```
 python ./Scripts/visualize_labels.py --root ./models --dataset_name models_ifl --object 008 --parallel_grasps --simulation --score_min 0.8 --max_grasps 100
 ```
+<p align="center">
+<img src="./media/pj_grasp_labels.png" width="70%">
+</p>
+
+
 **Vacuum Grasp Labels**
 ```
 python ./Scripts/visualize_labels.py --root ./models --dataset_name models_ifl --object 064 --suction_grasps --analytical --max_grasps 500
 ```
+<p align="center">
+<img src="./media/sc_grasp_labels.png" width="50%">
+</p>
+
 **Keypoints**
 ```
 python ./Scripts/visualize_labels.py --root ./models --dataset_name models_ifl --object 008 --keypts_byhand
@@ -167,7 +177,7 @@ python ./Scripts/visualize_labels.py --root ./models --dataset_name models_ifl -
 ```
 
 
-# Customizing MetaGraspNet (released soon)
+# Customizing MetaGraspNet
 Our proposed dataset is already very comprehensive, however metaverses allow for customizing data generation. 
 We provide scripts for that as well, you can find them below.
 
@@ -179,20 +189,17 @@ You can add custom .obj meshes by following the provided file structure in ./mod
 ## Vacuum Grasps
 We provide scripts to generate your own vacuum grasps based on our proposed cup model:
 ```
-cd grasps_sampling
-python ./scripts/sample_grasps.py --mesh_root ../models/models_ifl/ --suction --max_grasps 10
+python ./grasps_sampling/scripts/sample_grasps.py --mesh_root ../models/models_ifl/ --suction --max_grasps 10
 ```
 ## Parallel-Jaw Grasps
 You can sample antipodal grasps with:
 ```
-cd grasps_sampling
-python ./scripts/sample_grasps.py --mesh_root ../models/models_ifl/ --two_finger --max_grasps 10
+python ./grasps_sampling/scripts/sample_grasps.py --mesh_root ../models/models_ifl/ --paralleljaw --max_grasps 10
 ```
+## Parallel-Jaw Grasps in Isaac Sim (coming soon)
 <p align="center">
 <img src="./media/gym_1.gif" width="70%">
 </p>
-
-
 
 For generating parallel grasps based on physics simulation, please fullfill installation process from [IsaacGym](https://developer.nvidia.com/isaac-gym). After you have set up a working isaac gym environment, start simulating with: (Be aware the PJ Grasps labels will be overwritten)
 ```
@@ -208,7 +215,7 @@ python ./Scripts/pcl_label_gui.py --data_root ./models --dataset_name models_ifl
 ```
 A window should appear where you can start labeling. You can move around with **[left mouse]** click, move your mouse cursor to the desired point on the mesh and add a keypt with **[right mouse]** click. The keypoint should appear in the scene, in case you want to remove it you can go over the created keypoint and **[scroll wheel]** click. It should disappear again (please be aware: you can only remove the last keypoint). When you are done, press **[s]** to save it to file or close with **[q]**.
 
-## Generating Custom Data
+## Generating Custom Data (coming soon)
 
 We provide scripts which enable you to create your own custom dataset. After successful installation of [Isaac Sim](https://developer.nvidia.com/isaac-sim) Python API, you can start creating custom data with
 ```

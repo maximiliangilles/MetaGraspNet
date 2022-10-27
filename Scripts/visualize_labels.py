@@ -255,7 +255,7 @@ def create_contact_pose(grasp_config):
     return cos_system
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", type=str, default="/home/isaac/GraspNet_Models/models_flairop")
     parser.add_argument("--dataset_name", type=str, default="models_ifl")
@@ -281,7 +281,7 @@ if __name__=="__main__":
         args.analytical = True
 
     ## read in dataset
-    grasp_dict =  read_in_mesh_config(
+    grasp_dict = read_in_mesh_config(
         file=PATH_TO_HDF5,
         parallel=args.parallel_grasps,
         suctioncup=args.suction_grasps,
@@ -364,7 +364,7 @@ if __name__=="__main__":
             if score >= args.score_min and score <= args.score_max:
                 contact_pt = [T_W_CONTACT[0,3],T_W_CONTACT[1,3],T_W_CONTACT[2,3]]
                 #print(score)
-                vacuum_contact = trimesh.primitives.Sphere(radius=0.15, center=contact_pt)
+                vacuum_contact = trimesh.primitives.Sphere(radius=0.7, center=contact_pt)
                 vacuum_contact.visual.vertex_colors = interpolate_between_red_and_green(score)
                 trimesh_scene.add_geometry(
                     geometry=vacuum_contact)
@@ -378,7 +378,7 @@ if __name__=="__main__":
             keypt = grasp_dict['keypts_byhand'][id]
             pt_ = [keypt[1],keypt[2],keypt[3]]
             id_ = keypt[0]
-            keypt_vis = trimesh.primitives.Sphere(radius=0.15, center=pt_)
+            keypt_vis = trimesh.primitives.Sphere(radius=0.3, center=pt_)
             keypt_vis.visual.vertex_colors = random_rgb_color(id_)
             trimesh_scene.add_geometry(
                 geometry=keypt_vis)
