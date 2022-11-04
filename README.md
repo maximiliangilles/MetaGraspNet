@@ -4,7 +4,8 @@
 </p>
 
 # News [dd/mm/yyyy]
-- [27/10/2022] **Grasp Sampling Code Online:** Code for sampling of parallel-jaw and vacuum grasp labels available.
+- [04/11/2022] **Physics Simulation Code Online:** Example code for simulating paralleljaw grasps in Isaac Gym available..
+- [27/10/2022] **Grasp Sampling Code Online:** Example code for sampling of paralleljaw and vacuum grasp labels available.
 - [26/07/2022] **Additional Synthetic Data:** Additional training data available.
 
 # Installation
@@ -189,15 +190,14 @@ You can sample antipodal grasps with:
 ```
 python ./grasps_sampling/scripts/sample_grasps.py --mesh_root ../models/models_ifl/ --paralleljaw --max_grasps 10
 ```
-## Parallel-Jaw Grasps in Isaac Sim (coming soon)
+## Parallel-Jaw Grasps in Isaac Gym
 <p align="center">
 <img src="./media/gym_1.gif" width="70%">
 </p>
 
-For generating parallel grasps based on physics simulation, please fullfill installation process from [IsaacGym](https://developer.nvidia.com/isaac-gym). After you have set up a working isaac gym environment, start simulating with: (Be aware the PJ Grasps labels will be overwritten)
+For generating parallel grasps based on physics simulation, please fullfill installation process from [IsaacGym](https://developer.nvidia.com/isaac-gym). Scripts are tested for **isaac gym version 1.0.preview2**. After you have set up a working isaac gym environment, start simulating with: (existing simulation data will be overwritten!)
 ```
-cd ./physics_simulation
-(rlgpu) python ./scripts/scripting_simulation.py --root ../models/models_ifl/ --visualize --num_envs 16 --categories 008 --gpu 0
+(rlgpu) python ./physics_simulation/paralleljaw_simulation.py --root ../models/models_ifl/ --visualize --num_envs 16 --categories 008
 ```
 ## Adding Custom Keypts to models
 
