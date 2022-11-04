@@ -4,8 +4,8 @@
 </p>
 
 # News [dd/mm/yyyy]
-- [04/11/2022] **Physics Simulation Code Online:** Example code for simulating paralleljaw grasps in Isaac Gym available..
-- [27/10/2022] **Grasp Sampling Code Online:** Example code for sampling of paralleljaw and vacuum grasp labels available.
+- [04/11/2022] **Physics Simulation Online:** Example code for simulating paralleljaw grasps in Isaac Gym available.
+- [27/10/2022] **Grasp Sampling Online:** Example code for sampling of paralleljaw and vacuum grasp labels available.
 - [26/07/2022] **Additional Synthetic Data:** Additional training data available.
 
 # Installation
