@@ -27,14 +27,14 @@ The codebase and dataset are under **CC BY-NC-SA 3.0 license**. You may only use
 
 
 # Citation
-If you find our work useful, please consider citing.
+If you find our work ([proceedings](https://github.com/maximiliangilles/MetaGraspNet), [arXiv](https://arxiv.org/abs/2208.03963)) useful, please consider citing:
 ```
 @inproceedings{metagraspnet2022,
     title     = {{MetaGraspNet}: A Large-Scale Benchmark Dataset for Scene-Aware
 Ambidextrous Bin Picking via Physics-based Metaverse Synthesis},
     author    = {Maximilian, Gilles and Chen, Yuhao and Winter, Tim Robin and Zeng, E. Zhixuan and Wong, Alexander},
     year      = {2022},
-    booktitle = {IEEE International Conference on Automation Science and Engineering (CASE) [in press]}
+    booktitle = {IEEE International Conference on Automation Science and Engineering (CASE)}
 }
 ```
 
