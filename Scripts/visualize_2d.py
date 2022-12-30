@@ -44,8 +44,10 @@ if __name__ == "__main__":
         "--real_data_grasps",
         default=False, action='store_true',
         help="Set flag for real world data grasps.")
-    
-
+    parser.add_argument(
+        "--real_data_mats",
+        default=False, action='store_true',
+        help="Set flag for real world data materials.")
     args = parser.parse_args()
 
     PATH_TO_DATA = pathlib.Path(args.data_root)
@@ -55,6 +57,7 @@ if __name__ == "__main__":
     PATH_TO_RGB = PATH_TO_SCENE / f"{VIEWPT}_rgb.png"
     PATH_TO_DEPTH = PATH_TO_SCENE / f"{VIEWPT}.npz"
     PATH_TO_GRASPS = PATH_TO_SCENE / f"{VIEWPT}_grasps.npz"
+    PATH_TO_MATERIALS = PATH_TO_SCENE / f"{VIEWPT}_mats.npz"
 
     color_bgr = cv2.imread(str(PATH_TO_RGB))
     color_img = cv2.cvtColor(color_bgr, cv2.COLOR_BGR2RGB)
@@ -95,6 +98,12 @@ if __name__ == "__main__":
     else:
         suction_mask = np.zeros_like(color_img)
         parallel_jaw_mask = np.zeros_like(color_img)
+
+    if args.real_data_mats and args.real_data:
+        with np.load(str(PATH_TO_MATERIALS)) as data:
+            material_bitmap = data['material_bitmap']
+    else:
+        material_bitmap = np.zeros_like(depth)
 
     if args.real_data is False:
         # no amodal mask available for real data
@@ -178,31 +187,35 @@ if __name__ == "__main__":
     
     else:
         height, width = depth.shape
-        plt.subplot(2, 3, 1)
+        plt.subplot(2, 4, 1)
         plt.axis('off')
         plt.title('RGB')
         plt.imshow(color_img)
-        plt.subplot(2, 3, 2)
+        plt.subplot(2, 4, 2)
         plt.axis('off')
         plt.title('Depth')
         plt.imshow(depth, cmap='Greys')
         plt.colorbar()
-        plt.subplot(2, 3, 3)
+        plt.subplot(2, 4, 3)
         plt.axis('off')
         plt.title('Instances (Object Ids)')
         plt.imshow(instances_objects)
-        plt.subplot(2, 3, 4)
+        plt.subplot(2, 4, 4)
         plt.axis('off')
         plt.title('Instances (Categories)')
         plt.imshow(instances_semantic)
-        plt.subplot(2, 3, 5)
+        plt.subplot(2, 4, 5)
         plt.title('Vacuum')
         plt.imshow(suction_mask)
         plt.axis('off')
-        plt.subplot(2, 3, 6)
+        plt.subplot(2, 4, 6)
         plt.title('Parallel-Jaw')
         plt.imshow(parallel_jaw_mask)
         plt.axis('off')
+        plt.subplot(2, 4, 7)
+        plt.axis('off')
+        plt.title('Materials')
+        plt.imshow(material_bitmap)
         plt.show()
 
     if args.visualize_layout:

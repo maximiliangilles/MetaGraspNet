@@ -4,6 +4,7 @@
 </p>
 
 # News [dd/mm/yyyy]
+- [30/12/2022] **Material Labels Online:** Pixelwise material labels are added to real world data.
 - [04/11/2022] **Physics Simulation Online:** Example code for simulating paralleljaw grasps in Isaac Gym available.
 - [27/10/2022] **Grasp Sampling Online:** Example code for sampling of paralleljaw and vacuum grasp labels available.
 - [26/07/2022] **Additional Synthetic Data:** Additional training data available.
@@ -49,7 +50,7 @@ Ambidextrous Bin Picking via Physics-based Metaverse Synthesis},
 You can visualize scenes in 2D and 3D. For visualizing the **real world data**, add `--real_data` and `--real_data_grasps` argument in 2D.
 ### Real 2D
 ```
-python Scripts/visualize_2d.py --data_root ./dataset_real --viewpt 3 --scene 418 --real_data --real_data_grasps --visualize_layout
+python Scripts/visualize_2d.py --data_root ./dataset_real --viewpt 3 --scene 418 --real_data --real_data_grasps --real_data_mats --visualize_layout
 ```
 <p align="center">
 <img src="./media/418_all.jpg" width="70%">
