@@ -4,6 +4,7 @@
 </p>
 
 # News [dd/mm/yyyy]
+- [14/02/2023] **Amodal Segmentation Masks:** We will be able to provide amodal segmentation masks for our real world evaluation dataset! The release is planned for the next months! We will inform here, once there are updates.
 - [04/11/2022] **Physics Simulation Online:** Example code for simulating paralleljaw grasps in Isaac Gym available.
 - [27/10/2022] **Grasp Sampling Online:** Example code for sampling of paralleljaw and vacuum grasp labels available.
 - [26/07/2022] **Additional Synthetic Data:** Additional training data available.
