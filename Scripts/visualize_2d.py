@@ -41,6 +41,10 @@ if __name__ == "__main__":
         default=False, action='store_true',
         help="Set flag for real world data.")
     parser.add_argument(
+        "--amodal",
+        default=False, action='store_true',
+        help="Set flag for visualizing amodal mask.")
+    parser.add_argument(
         "--real_data_grasps",
         default=False, action='store_true',
         help="Set flag for real world data grasps.")
@@ -96,7 +100,7 @@ if __name__ == "__main__":
         suction_mask = np.zeros_like(color_img)
         parallel_jaw_mask = np.zeros_like(color_img)
 
-    if args.real_data is False:
+    if args.real_data is False and args.amodal:
         # no amodal mask available for real data
 
         # Segment image with SLIC - Simple Linear Iterative Clustering
@@ -152,6 +156,7 @@ if __name__ == "__main__":
         plt.title('amodal segmentation')
         plt.show()
 
+    if args.real_data is False:
         height, width = depth.shape
         plt.subplot(2, 3, 1)
         plt.axis('off')
@@ -175,7 +180,6 @@ if __name__ == "__main__":
         plt.axis('off')
         plt.colorbar()
         plt.show()
-    
     else:
         height, width = depth.shape
         plt.subplot(2, 3, 1)
@@ -206,5 +210,5 @@ if __name__ == "__main__":
         plt.show()
 
     if args.visualize_layout:
-        PATH_TO_RGB = PATH_TO_SCENE / f"3"
+        PATH_TO_RGB = PATH_TO_SCENE / f"0" if not args.real_data else PATH_TO_SCENE / f"3"
         visualize_layout.visualize(str(PATH_TO_RGB))
