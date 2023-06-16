@@ -50,7 +50,7 @@ Ambidextrous Bin Picking via Physics-based Metaverse Synthesis},
 You can visualize scenes in 2D and 3D. For visualizing the **real world data**, add `--real_data` and `--real_data_grasps` argument in 2D.
 ### Real 2D
 ```
-python Scripts/visualize_2d.py --data_root ./dataset_real --viewpt 3 --scene 418 --real_data --real_data_grasps --real_data_mats --visualize_layout
+python Scripts/visualize_2d.py --data_root ./dataset_real --viewpt 3 --scene 418 --real_data --real_data_grasps --visualize_layout
 ```
 <p align="center">
 <img src="./media/418_all.jpg" width="70%">
