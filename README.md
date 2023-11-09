@@ -38,11 +38,6 @@ Please consider citing the comprehensive **journal version**.
 
 ## MetaGraspNetV2 - Journal Version Open Access ([Link to Paper](https://ieeexplore.ieee.org/document/10309974))
 
-<p align="center">
-<img src="./media/gille1.png" width="40%">
-</p>
-
-
 ```
 @ARTICLE{metagraspnetv2,
   author={Gilles, Maximilian and Chen, Yuhao and Zeng, Emily Zhixuan and Wu, Yifan and Furmans, Kai and Wong, Alexander and Rayyes, Rania},
