@@ -4,3 +4,4 @@ scene_generation
 media_raw
 labels_sim
 models/models_ifl_copy
+*.pyc
