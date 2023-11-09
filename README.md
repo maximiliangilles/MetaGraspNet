@@ -1,10 +1,11 @@
-# MetaGraspNet
+# MetaGraspNetV2
 <p align="center">
 <img src="./media/metagraspnet_all.png" width="80%">
 </p>
 
 # News [dd/mm/yyyy]
-- [14/02/2023] **Amodal Segmentation Masks:** We will be able to provide amodal segmentation masks and 6-DoF object poses for our real world evaluation dataset! The release is planned for the next months! We will inform here, once there are updates.
+- [09/11/2023] **MetaGraspNetV2 Online:** MetaGraspNetV2 paper (Open Access) is published.
+- [09/11/2023] **Amodal Segmentation Masks for Real-World Data:** MetaGraspNetV2 provides amodal masks and object poses for real-world data.
 - [04/11/2022] **Physics Simulation Online:** Example code for simulating paralleljaw grasps in Isaac Gym available.
 - [27/10/2022] **Grasp Sampling Online:** Example code for sampling of paralleljaw and vacuum grasp labels available.
 - [26/07/2022] **Additional Synthetic Data:** Additional training data available.
@@ -17,20 +18,46 @@ conda activate metagraspnet_env
 ```
 Prerequisites : Miniconda3, Ubuntu 20.04, Python 3.8. **GPU not needed** for working with dataset!
 
-# Downloads
+# Download Dataset
+## Download MetaGraspNetV2
+You can download the **synthetic dataset (MGN-Sim)** from [Link](https://nx25922.your-storageshare.de/s/cTfjx9QbRLBfTdN). Unzip and save in `./dataset_sim`.
+
+You can download the **real world dataset (MGN-Real)** set from [Link](https://nx25922.your-storageshare.de/s/HPe2eYGGJGz6rqd). Unzip and save in `./dataset_real`.
+
+## Download MetaGraspNet
+**Please Note:** We recommend working with MetaGraspNetV2 data (see above).
+
 You can download the **synthetic dataset** from [Link](https://nx25922.your-storageshare.de/s/t27q8mmbDe4WpNG). Unzip and save in `./dataset_sim`.
 
 You can download the **real world dataset** set from [Link](https://nx25922.your-storageshare.de/s/nCqtsgAZWtP3fCz). Unzip and save in `./dataset_real`.
 
-# License
-The codebase and dataset are under **CC BY-NC-SA 3.0 license**. You may only use the database for academic purposes. Any kind of commercial or military usage forbidden. For more details [see](https://creativecommons.org/licenses/by-nc-sa/3.0/).
-
-
 
 # Citation
-If you find our work ([proceedings](https://ieeexplore.ieee.org/document/9926427), [arXiv](https://arxiv.org/abs/2208.03963)) useful, please consider citing:
+
+Please consider citing the comprehensive **journal version**.
+
+## MetaGraspNetV2 - Journal Version Open Access ([Link to Paper](https://ieeexplore.ieee.org/document/10309974))
+
+<p align="center">
+<img src="./media/gille1.png" width="50%">
+</p>
+
 ```
-@inproceedings{metagraspnet2022,
+@ARTICLE{metagraspnetv2,
+  author={Gilles, Maximilian and Chen, Yuhao and Zeng, Emily Zhixuan and Wu, Yifan and Furmans, Kai and Wong, Alexander and Rayyes, Rania},
+  journal={IEEE Transactions on Automation Science and Engineering}, 
+  title={MetaGraspNetV2: All-in-One Dataset Enabling Fast and Reliable Robotic Bin Picking via Object Relationship Reasoning and Dexterous Grasping}, 
+  year={2023},
+  volume={},
+  number={},
+  pages={1-19},
+  doi={10.1109/TASE.2023.3328964}}
+```
+
+## MetaGraspNet - Conference Version ([Link to Paper](https://ieeexplore.ieee.org/document/9926427))
+
+```
+@INPROCEEDINGS{metagraspnet,
     title     = {{MetaGraspNet}: A Large-Scale Benchmark Dataset for Scene-Aware
 Ambidextrous Bin Picking via Physics-based Metaverse Synthesis},
     author    = {Maximilian, Gilles and Chen, Yuhao and Winter, Tim Robin and Zeng, E. Zhixuan and Wong, Alexander},
@@ -41,16 +68,16 @@ Ambidextrous Bin Picking via Physics-based Metaverse Synthesis},
 
 # Dataset
 <p align="center">
-<img src="./media/Overview_MetaGraspNet_v1.jpg" width="70%">
+<img src="./media/gille2.png" width="70%">
 </p>
 
 
 
 ## Visualizing Synthetic And Real World Scenes and Exploring the Labels 
-You can visualize scenes in 2D and 3D. For visualizing the **real world data**, add `--real_data` and `--real_data_grasps` argument in 2D.
+You can visualize scenes in 2D and 3D. For visualizing the **real world data**, add `--real_data`,  `--real_data_grasps`, or `--real_data_amodal` (MetaGraspNetV2) argument in 2D.
 ### Real 2D
 ```
-python Scripts/visualize_2d.py --data_root ./dataset_real --viewpt 3 --scene 418 --real_data --real_data_grasps --visualize_layout
+python Scripts/visualize_2d.py --data_root ./dataset_real --viewpt 3 --scene 418 --real_data --real_data_grasps --visualize_layout --real_data_amodal
 ```
 <p align="center">
 <img src="./media/418_all.jpg" width="70%">
@@ -215,6 +242,12 @@ We provide scripts which enable you to create your own custom dataset. After suc
 ```
 (isaac-sim) python ./scripts/dataset_physics.py --categories power_drill --root /home/XYZ/metagraspnet/models --dataset_name models_ifl [--randomize]
 ```
+# License
+The codebase and dataset are under **CC BY-NC-SA 3.0 license**. You may only use the database for academic purposes. Any kind of commercial or military usage forbidden. For more details [see](https://creativecommons.org/licenses/by-nc-sa/3.0/).
 
 # Project History
-**MetaGraspNet_v0:** A previous version of our MetaGraspNet project can be found [here](https://arxiv.org/abs/2112.14663).
+**MetaGraspNet_v0:** Early preprint (2021) of MetaGraspNet project [here](https://arxiv.org/abs/2112.14663). We do not recommend to cite this version!
+
+**MetaGraspNet:** Conference version (IEEE CASE 2022) of our MetaGraspNet project [here](https://ieeexplore.ieee.org/document/9926427).
+
+**MetaGraspNetV2:** Comprehensive journal version (IEEE T-ASE 2023) of our MetaGraspNet project [here](https://ieeexplore.ieee.org/document/10309974).

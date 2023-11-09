@@ -85,6 +85,10 @@ if __name__ == "__main__":
         action="store_true",
         help="Set flag to visualize suctioncup.")
     parser.add_argument(
+        "--visualize_colliding_grasps",
+        action='store_true',
+        help="Set flag to visualize colliding grasps.")
+    parser.add_argument(
         "--visualize_keypts_com",
         action="store_true",
         help="Set flag to visualize center of mass points.")
@@ -178,10 +182,14 @@ if __name__ == "__main__":
         # load two finger gripper as mesh
         # load gripper config and transform
         f = h5py.File(str(PATH_TO_HDF5), 'r')
-        dset_grasps = f['non_colliding_grasps']['paralleljaw']['franka_poses_relative_to_camera']
-        dset_obj_id = f['non_colliding_grasps']['paralleljaw']['object_id']
-        dset_score_analytical = f['non_colliding_grasps']['paralleljaw']['score_analytical']
-        dset_score_simulation = f['non_colliding_grasps']['paralleljaw']['score_simulation']
+
+        grasps_selected = 'non_colliding_grasps' if not \
+            args.visualize_colliding_grasps else 'colliding_grasps'
+
+        dset_grasps = f[grasps_selected]['paralleljaw']['franka_poses_relative_to_camera']
+        dset_obj_id = f[grasps_selected]['paralleljaw']['object_id']
+        dset_score_analytical = f[grasps_selected]['paralleljaw']['score_analytical']
+        dset_score_simulation = f[grasps_selected]['paralleljaw']['score_simulation']
         
         parallel_grasps = list(dset_grasps)
         object_ids = list(dset_obj_id)
@@ -216,7 +224,9 @@ if __name__ == "__main__":
     parallel_contacts = []
     if args.visualize_parallel_contacts_from_dataset:
         f = h5py.File(str(PATH_TO_HDF5), 'r')
-        dset_contacts = f['non_colliding_grasps']['paralleljaw']['contact_poses_relative_to_camera']
+        grasps_selected = 'non_colliding_grasps' if not \
+            args.visualize_colliding_grasps else 'colliding_grasps'
+        dset_contacts = f[grasps_selected]['paralleljaw']['contact_poses_relative_to_camera']
         contact_poses = list(dset_contacts)
         for contact_transform in contact_poses:
             contact_transform[0,3] /=100
@@ -226,8 +236,10 @@ if __name__ == "__main__":
             parallel_contacts.append(contact_cos.transform(contact_transform))
     if args.visualize_parallel_contacts_from_gripper_pose:
         f = h5py.File(str(PATH_TO_HDF5), 'r')
-        dset_grasps = f['non_colliding_grasps']['paralleljaw']['franka_poses_relative_to_camera']
-        dset_grasp_width = f['non_colliding_grasps']['paralleljaw']['contact_width']
+        grasps_selected = 'non_colliding_grasps' if not \
+            args.visualize_colliding_grasps else 'colliding_grasps'
+        dset_grasps = f[grasps_selected]['paralleljaw']['franka_poses_relative_to_camera']
+        dset_grasp_width = f[grasps_selected]['paralleljaw']['contact_width']
         parallel_grasps = list(dset_grasps)
         grasp_widths = list(dset_grasp_width)
         for grasp_transform, width in zip(parallel_grasps, grasp_widths):
@@ -249,10 +261,12 @@ if __name__ == "__main__":
         # load two finger gripper as mesh
         # load gripper config and transform
         f = h5py.File(str(PATH_TO_HDF5), 'r')
-        dset_grasps = f['non_colliding_grasps']['suctioncup']['contact_poses_relative_to_camera']
-        dset_obj_id = f['non_colliding_grasps']['suctioncup']['object_id']
-        dset_score_analytical = f['non_colliding_grasps']['suctioncup']['score_analytical']
-        dset_score_simulation = f['non_colliding_grasps']['suctioncup']['score_simulation']
+        grasps_selected = 'non_colliding_grasps' if not \
+            args.visualize_colliding_grasps else 'colliding_grasps'
+        dset_grasps = f[grasps_selected]['suctioncup']['suction_poses_relative_to_camera']
+        dset_obj_id = f[grasps_selected]['suctioncup']['object_id']
+        dset_score_analytical = f[grasps_selected]['suctioncup']['score_analytical']
+        dset_score_simulation = f[grasps_selected]['suctioncup']['score_simulation']
         
         suctioncup_grasps = list(dset_grasps)
         object_ids = list(dset_obj_id)
@@ -264,8 +278,8 @@ if __name__ == "__main__":
             grasp_transform[1,3] /=100
             grasp_transform[2,3] /=100
 
-            gripper = o3d.geometry.TriangleMesh.create_sphere(radius=0.5)
-
+            # gripper = o3d.geometry.TriangleMesh.create_sphere(radius=0.5)
+            gripper = o3d.io.read_triangle_mesh("./utils/Meshes/suction_gripper.ply")
             cos = o3d.geometry.TriangleMesh.create_coordinate_frame(size=0.01)
             gripper.scale(scale=0.01, center=np.array([0,0,0]))
 
