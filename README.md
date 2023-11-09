@@ -39,8 +39,9 @@ Please consider citing the comprehensive **journal version**.
 ## MetaGraspNetV2 - Journal Version Open Access ([Link to Paper](https://ieeexplore.ieee.org/document/10309974))
 
 <p align="center">
-<img src="./media/gille1.png" width="50%">
+<img src="./media/gille1.png" width="40%">
 </p>
+
 
 ```
 @ARTICLE{metagraspnetv2,
@@ -53,6 +54,8 @@ Please consider citing the comprehensive **journal version**.
   pages={1-19},
   doi={10.1109/TASE.2023.3328964}}
 ```
+[![Watch the video](./media/screenshot_video.png)](https://www.youtube.com/watch?v=jH2JzviqEhc&list=PLljFMQdU8e8oXW9nBbXu96Wy2fYpFAVUz)
+
 
 ## MetaGraspNet - Conference Version ([Link to Paper](https://ieeexplore.ieee.org/document/9926427))
 
@@ -111,7 +114,8 @@ You can download the models from [Link](https://nx25922.your-storageshare.de/s/9
 We advise to use [meshlab](https://www.meshlab.net/#download) for viewing the .obj meshes. 
 
 
-# Structure
+
+# Dataset Structure
 ## Scene Structure
 The groundtruth for each viewpoint is contained in `.../scene*/*_scene.hdf5` file. You can read it with [h5ls](https://www.rdocumentation.org/packages/rhdf5/versions/2.16.0/topics/h5ls).
 
