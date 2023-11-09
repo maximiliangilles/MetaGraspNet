@@ -1,0 +1,55 @@
+{
+  "1": {
+    "id": 1,
+    "occlusion": 0.3102000057697296,
+    "children": [],
+    "parents": [
+      {
+        "id": 2,
+        "depth_diff": 0.9604110717773438,
+        "edge_size": 490.0
+      }
+    ],
+    "total_covered_edge": 0,
+    "layer": 1
+  },
+  "2": {
+    "id": 2,
+    "occlusion": 0.00139999995008111,
+    "children": [
+      {
+        "id": 1,
+        "depth_diff": 0.9604110717773438,
+        "edge_size": 490.0
+      },
+      {
+        "id": 3,
+        "depth_diff": 2.6840972900390625,
+        "edge_size": 2112.0
+      }
+    ],
+    "parents": [
+      {
+        "id": 0,
+        "depth_diff": 0.0,
+        "edge_size": 0.0
+      }
+    ],
+    "total_covered_edge": 2602.0,
+    "layer": 0
+  },
+  "3": {
+    "id": 3,
+    "occlusion": 0.39410001039505005,
+    "children": [],
+    "parents": [
+      {
+        "id": 2,
+        "depth_diff": 2.6840972900390625,
+        "edge_size": 2112.0
+      }
+    ],
+    "total_covered_edge": 0,
+    "layer": 1
+  }
+}

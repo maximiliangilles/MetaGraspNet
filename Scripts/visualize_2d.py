@@ -1,3 +1,6 @@
+# python Scripts/visualize_2d.py --data_root /home/max/projects/data_ifl_real/data_ifl_pool  --viewpt 3 --scene _2023_6_15_17_56_3 --real_data --real_data_grasps --real_data_amodal
+
+
 #!/usr/bin/env python
 # Author : Maximilian Gilles, IFL, KIT
 import numpy as np
@@ -45,7 +48,7 @@ if __name__ == "__main__":
         help="Path to data.")
     parser.add_argument(
         "--scene",
-        type=int, default=0,
+        type=str, default="0",
         help="Specify which scene to load.")
     parser.add_argument(
         "--viewpt",
@@ -120,7 +123,7 @@ if __name__ == "__main__":
 
     if args.real_data and args.real_data_amodal:
         with np.load(str(PATH_TO_AMODAL)) as data:
-            amodal_bitmaps_full_size = data['amodal_bitmaps_full_size']
+            # amodal_bitmaps_full_size = data['amodal_bitmaps_full_size']
             amodal_bitmaps_full_size_instances = data['amodal_bitmaps_full_size_instances']
             occlusion_bitmap_full_size=data['occlusion_bitmap_full_size']
 
@@ -279,7 +282,6 @@ if __name__ == "__main__":
                 color_ = (color_list[idx * 2][0]/255, color_list[idx * 2][1]/255, color_list[idx * 2][2]/255)
                 ax.plot(contour[:, 1], contour[:, 0], linewidth=2.5, color=color_)
 
-        #print(occlusion_masks.shape[0])
         for idx in range(amodal_bitmaps_full_size_instances.shape[0]):
             mask_vis = amodal_bitmaps_full_size_instances[int(idx), 0]
 
@@ -304,7 +306,8 @@ if __name__ == "__main__":
         if args.save_figures:
             plt.savefig("occlusion_plot_bwr.png", dpi=2000, bbox_inches="tight")
         plt.show()
-    else:
+    
+    if args.real_data:
         height, width = depth.shape
         plt.subplot(2, 4, 1)
         plt.axis('off')
