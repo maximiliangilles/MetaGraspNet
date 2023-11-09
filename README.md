@@ -18,12 +18,13 @@ conda activate metagraspnet_env
 ```
 Prerequisites : Miniconda3, Ubuntu 20.04, Python 3.8. **GPU not needed** for working with dataset!
 
-# Download MetaGraspNetV2
+# Download Dataset
+## Download MetaGraspNetV2
 You can download the **synthetic dataset (MGN-Sim)** from [Link](https://nx25922.your-storageshare.de/s/cTfjx9QbRLBfTdN). Unzip and save in `./dataset_sim`.
 
 You can download the **real world dataset (MGN-Real)** set from [Link](https://nx25922.your-storageshare.de/s/HPe2eYGGJGz6rqd). Unzip and save in `./dataset_real`.
 
-# Download MetaGraspNet
+## Download MetaGraspNet
 **Please Note:** We recommend working with MetaGraspNetV2 data (see above).
 
 You can download the **synthetic dataset** from [Link](https://nx25922.your-storageshare.de/s/t27q8mmbDe4WpNG). Unzip and save in `./dataset_sim`.
@@ -33,9 +34,13 @@ You can download the **real world dataset** set from [Link](https://nx25922.your
 
 # Citation
 
-Please consider citing the comprehensive **journal version** of our work.
+Please consider citing the comprehensive **journal version**.
 
 ## MetaGraspNetV2 - Journal Version Open Access ([Link to Paper](https://ieeexplore.ieee.org/document/10309974))
+
+<p align="center">
+<img src="./media/gille1.png" width="50%">
+</p>
 
 ```
 @ARTICLE{metagraspnetv2,
@@ -52,7 +57,7 @@ Please consider citing the comprehensive **journal version** of our work.
 ## MetaGraspNet - Conference Version ([Link to Paper](https://ieeexplore.ieee.org/document/9926427))
 
 ```
-@INPROCEEDINGS{metagraspnet2022,
+@INPROCEEDINGS{metagraspnet,
     title     = {{MetaGraspNet}: A Large-Scale Benchmark Dataset for Scene-Aware
 Ambidextrous Bin Picking via Physics-based Metaverse Synthesis},
     author    = {Maximilian, Gilles and Chen, Yuhao and Winter, Tim Robin and Zeng, E. Zhixuan and Wong, Alexander},
@@ -63,7 +68,7 @@ Ambidextrous Bin Picking via Physics-based Metaverse Synthesis},
 
 # Dataset
 <p align="center">
-<img src="./media/Overview_MetaGraspNet_v1.jpg" width="70%">
+<img src="./media/gille2.png" width="70%">
 </p>
 
 
