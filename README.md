@@ -242,7 +242,7 @@ We provide scripts which enable you to create your own custom dataset. After suc
 (isaac-sim) python ./scripts/dataset_physics.py --categories power_drill --root /home/XYZ/metagraspnet/models --dataset_name models_ifl [--randomize]
 ```
 # License
-The codebase and dataset are under **CC BY-NC-SA 3.0 license**. You may only use the database for academic purposes. Any kind of commercial or military usage forbidden. For more details [see](https://creativecommons.org/licenses/by-nc-sa/3.0/).
+The dataset is under **CC BY-NC-SA 3.0 license**. You may only use the database for academic purposes. Any kind of commercial or military usage forbidden. For more details [see](https://creativecommons.org/licenses/by-nc-sa/3.0/).
 
 # Project History
 **MetaGraspNet_v0:** Early preprint (2021) of MetaGraspNet project [here](https://arxiv.org/abs/2112.14663). We do not recommend to cite this version!
