@@ -1,6 +1,6 @@
 # MetaGraspNetV2
 <p align="center">
-<img src="./media/Title Image.png" width="80%">
+<img src="./media/Title Image.png" width="100%">
 </p>
 
 # News [dd/mm/yyyy]
