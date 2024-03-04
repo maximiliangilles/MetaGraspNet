@@ -116,6 +116,10 @@ if __name__ == "__main__":
         "--score_threshold",
         type=float, default=-1,
         help="Only show grasps above threshold.")
+    parser.add_argument(
+        "--visualize_pose",
+        action="store_true",
+        help="Set flag to visualize object pose.")
     args = parser.parse_args()
 
     PATH_TO_DATA = pathlib.Path(args.data_root)
@@ -339,6 +343,41 @@ if __name__ == "__main__":
 
     camera_cos = o3d.geometry.TriangleMesh.create_coordinate_frame(size=0.1)
 
+    meshes_cos = []
+    if args.visualize_pose:
+        # load json
+        PATH_TO_POSE = PATH_TO_SCENE / 'scene_gt.json'
+        with open(str(PATH_TO_POSE), 'r') as f:
+            poses = json.load(f)
+        # iterate over json
+        poses_in_vpt = poses[str(VIEWPT)]
+        for idx, pose in enumerate(poses_in_vpt):
+            R_m2c = pose['cam_R_m2c']
+            t_m2c = pose['cam_t_m2c']
+            mesh_class = pose['obj_id']
+
+            def hex_to_rgb(value):
+                value = value.lstrip('#')
+                lv = len(value)
+                return tuple(int(value[i:i + lv // 3], 16)/256. for i in range(0, lv, lv // 3))
+
+            color_list_hex = ['#be254a', '#dc484c', '#ef6645', '#f88c51', '#fdb365', '#fed27f', '#feeb9d', '#fffebe',
+                          '#f0f9a7', '#d8ef9b', '#b3e0a2', '#89d0a4', '#60bba8', '#3f97b7', '#4273b3']
+            
+            color_list = [hex_to_rgb(color) for color in color_list_hex]
+
+            T_m2c = np.array([[R_m2c[0][0], R_m2c[0][1], R_m2c[0][2], t_m2c[0]/100.],
+                            [R_m2c[1][0], R_m2c[1][1], R_m2c[1][2], t_m2c[1]/100.],
+                            [R_m2c[2][0], R_m2c[2][1], R_m2c[2][2], t_m2c[2]/100.],
+                            [0, 0, 0, 1]])
+
+            mesh_cos = o3d.geometry.TriangleMesh.create_coordinate_frame(size=0.05)
+
+            meshes_cos.append(mesh_cos.transform(T_m2c))
+
+    # world_cos
+    world_cos = []
+
     # world_cos
     world_cos = []
     o3d.visualization.draw_geometries([
@@ -349,6 +388,7 @@ if __name__ == "__main__":
         *suctioncup_cos,
         *parallel_contacts,
         *keypts_byhand_vis,
+        *meshes_cos,
         *keypts_com_vis])
 
     if args.save_pcl:
