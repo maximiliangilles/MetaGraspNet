@@ -226,14 +226,7 @@ For generating parallel grasps based on physics simulation, please fullfill inst
 ```
 (rlgpu) python ./physics_simulation/paralleljaw_simulation.py --root ../models/models_ifl/ --visualize --num_envs 16 --categories 008
 ```
-## Adding Custom Keypts to models
 
-We provide GUI scripts to let you label your own keypts. You can start the label gui with:
-
-```
-python ./Scripts/pcl_label_gui.py --data_root ./models --dataset_name models_ifl --object_idx 064
-```
-A window should appear where you can start labeling. You can move around with **[left mouse]** click, move your mouse cursor to the desired point on the mesh and add a keypt with **[right mouse]** click. The keypoint should appear in the scene, in case you want to remove it you can go over the created keypoint and **[scroll wheel]** click. It should disappear again (please be aware: you can only remove the last keypoint). When you are done, press **[s]** to save it to file or close with **[q]**.
 
 ## Generating Custom Data (coming soon)
 
