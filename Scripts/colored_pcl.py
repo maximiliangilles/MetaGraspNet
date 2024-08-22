@@ -11,7 +11,7 @@ import h5py
 import random
 import cv2
 
-def filter_contact_points(pcd, contacts, threshold_radius=0.005):
+def filter_contact_points(pcd, contacts, threshold_radius=0.01):
     """
     Filter out contact points for given sensor cloud.
     Args:
@@ -120,6 +120,11 @@ if __name__ == "__main__":
         "--visualize_pose",
         action="store_true",
         help="Set flag to visualize object pose.")
+    parser.add_argument(
+        "--filter_for_contact",
+        action="store_true",
+        help="Set flag to check if grasp is 'visible' in viewppoint.")
+    
     args = parser.parse_args()
 
     PATH_TO_DATA = pathlib.Path(args.data_root)
@@ -191,20 +196,29 @@ if __name__ == "__main__":
             args.visualize_colliding_grasps else 'colliding_grasps'
 
         dset_grasps = f[grasps_selected]['paralleljaw']['franka_poses_relative_to_camera']
+        dset_contacts = f[grasps_selected]['paralleljaw']['contact_poses_relative_to_camera']
         dset_obj_id = f[grasps_selected]['paralleljaw']['object_id']
         dset_score_analytical = f[grasps_selected]['paralleljaw']['score_analytical']
         dset_score_simulation = f[grasps_selected]['paralleljaw']['score_simulation']
-        
+
         parallel_grasps = list(dset_grasps)
+        parallel_contacts = list(dset_contacts)
         object_ids = list(dset_obj_id)
         scores_analytical = list(dset_score_analytical)
         scores_simulation = list(dset_score_simulation)
-        
-        for grasp_transform, id, score_analytical, score_simulation in zip(parallel_grasps, object_ids, scores_analytical, scores_simulation):
+
+        valid_parallel_contacts_bool = filter_contact_points(pcd, parallel_contacts)
+
+        for idx, (grasp_transform, id, score_analytical, score_simulation) in enumerate(zip(parallel_grasps, object_ids, scores_analytical, scores_simulation)):
+
+            if args.filter_for_contact:
+                if not valid_parallel_contacts_bool[idx]:
+                    continue
+
             grasp_transform[0,3] /=100
             grasp_transform[1,3] /=100
             grasp_transform[2,3] /=100
-            print(grasp_transform)
+            # print(grasp_transform)
             gripper = o3d.io.read_triangle_mesh("./utils/Meshes/parallel_gripper.ply")
             cos = o3d.geometry.TriangleMesh.create_coordinate_frame(size=0.01)
             gripper.scale(scale=0.01, center=np.array([0,0,0]))
@@ -215,7 +229,7 @@ if __name__ == "__main__":
             elif args.colorize_per_score == "l2norm":
                 _score = np.sqrt(score_analytical*score_analytical + score_simulation*score_simulation)/np.sqrt(2)
             else:
-                print("no score selected!")
+                _score = score_analytical
             if args.colorize_per_score == "analytical" or args.colorize_per_score == "simulation" or args.colorize_per_score == "l2norm":
                 color = rgb_score_color(score=_score)
                 gripper.paint_uniform_color(color)
@@ -227,6 +241,7 @@ if __name__ == "__main__":
 
     parallel_contacts = []
     if args.visualize_parallel_contacts_from_dataset:
+        print("Deprecated!")
         f = h5py.File(str(PATH_TO_HDF5), 'r')
         grasps_selected = 'non_colliding_grasps' if not \
             args.visualize_colliding_grasps else 'colliding_grasps'
@@ -239,6 +254,7 @@ if __name__ == "__main__":
             contact_cos = o3d.geometry.TriangleMesh.create_coordinate_frame(size=0.02)
             parallel_contacts.append(contact_cos.transform(contact_transform))
     if args.visualize_parallel_contacts_from_gripper_pose:
+        print("Deprecated!")
         f = h5py.File(str(PATH_TO_HDF5), 'r')
         grasps_selected = 'non_colliding_grasps' if not \
             args.visualize_colliding_grasps else 'colliding_grasps'
@@ -267,17 +283,26 @@ if __name__ == "__main__":
         f = h5py.File(str(PATH_TO_HDF5), 'r')
         grasps_selected = 'non_colliding_grasps' if not \
             args.visualize_colliding_grasps else 'colliding_grasps'
+
         dset_grasps = f[grasps_selected]['suctioncup']['suction_poses_relative_to_camera']
+        dset_contacts = f[grasps_selected]['suctioncup']['contact_poses_relative_to_camera']
         dset_obj_id = f[grasps_selected]['suctioncup']['object_id']
         dset_score_analytical = f[grasps_selected]['suctioncup']['score_analytical']
         dset_score_simulation = f[grasps_selected]['suctioncup']['score_simulation']
-        
+
         suctioncup_grasps = list(dset_grasps)
+        suctioncup_contacts = list(dset_contacts)
         object_ids = list(dset_obj_id)
         scores_analytical = list(dset_score_analytical)
         scores_simulation = list(dset_score_simulation)
 
-        for grasp_transform, id, score_analytical, score_simulation in zip(suctioncup_grasps, object_ids, scores_analytical, scores_simulation):
+        valid_suctioncup_contacts_bool = filter_contact_points(pcd, suctioncup_contacts)
+
+        for idx, (grasp_transform, id, score_analytical, score_simulation) in enumerate(zip(suctioncup_grasps, object_ids, scores_analytical, scores_simulation)):
+            if args.filter_for_contact:
+                if not valid_suctioncup_contacts_bool[idx]:
+                    continue
+
             grasp_transform[0,3] /=100
             grasp_transform[1,3] /=100
             grasp_transform[2,3] /=100
@@ -294,7 +319,7 @@ if __name__ == "__main__":
             elif args.colorize_per_score == "l2norm":
                 _score = np.sqrt(score_analytical*score_analytical + score_simulation*score_simulation)/np.sqrt(2)
             else:
-                print("no score selected!")
+                _score = score_analytical
             if args.colorize_per_score == "analytical" or args.colorize_per_score == "simulation" or args.colorize_per_score == "l2norm":
                 color = rgb_score_color(score=_score)
                 gripper.paint_uniform_color(color)

@@ -346,5 +346,5 @@ if __name__ == "__main__":
         plt.show()
 
     if args.visualize_layout:
-        PATH_TO_RGB = PATH_TO_SCENE / f"0" if not args.real_data else PATH_TO_SCENE / f"3"
+        PATH_TO_RGB = PATH_TO_SCENE / f"1" if not args.real_data else PATH_TO_SCENE / f"3"
         visualize_layout.visualize(str(PATH_TO_RGB))
