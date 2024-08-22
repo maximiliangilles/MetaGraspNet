@@ -160,7 +160,7 @@ if __name__ == "__main__":
         color=color_raw, 
         depth=depth_raw,
         depth_scale=100, # important! cm -> m
-        depth_trunc=1,
+        depth_trunc=2,
         convert_rgb_to_intensity=False)
 
     with open(str(PATH_TO_CAMPARAMS)) as json_file:
