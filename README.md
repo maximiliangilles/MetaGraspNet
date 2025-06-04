@@ -4,6 +4,7 @@
 </p>
 
 # News [dd/mm/yyyy]
+- [04/06/2025] **MetaGraspNetV2_V2 Update:** MGN-V2 synthetic dataset has a new release, fixing an isuue regarding small misalignments between RGB/D and object poses ([issue #22](https://github.com/maximiliangilles/MetaGraspNet/issues/22)). Download links have been updated.
 - [09/11/2023] **MetaGraspNetV2 Online:** MetaGraspNetV2 paper (Open Access) is published.
 - [09/11/2023] **Amodal Segmentation Masks for Real-World Data:** MetaGraspNetV2 provides amodal masks and object poses for real-world data.
 - [04/11/2022] **Physics Simulation Online:** Example code for simulating paralleljaw grasps in Isaac Gym available.
@@ -20,9 +21,15 @@ Prerequisites : Miniconda3, Ubuntu 20.04, Python 3.8. **GPU not needed** for wor
 
 # Download Dataset
 ## Download MetaGraspNetV2
-You can download the **synthetic dataset (MGN-Sim)** from [Link](https://nx25922.your-storageshare.de/s/cTfjx9QbRLBfTdN). Unzip and save in `./dataset_sim`.
+You can download  the  **synthetic dataset (MGN-Sim)** from [Link](https://nx25922.your-storageshare.de/s/pDik4DYzps2grKC). Unzip and save in `./dataset_sim`.
+
 
 You can download the **real world dataset (MGN-Real)** set from [Link](https://nx25922.your-storageshare.de/s/HPe2eYGGJGz6rqd). Unzip and save in `./dataset_real`.
+
+### Previous Versions
+You can download the previous version the synthetic dataset from [Link](https://nx25922.your-storageshare.de/s/cTfjx9QbRLBfTdN). 
+*Please Note: Not recommended, please most recent version for new projects.*
+
 
 ## Download MetaGraspNet
 **Please Note:** We recommend working with MetaGraspNetV2 data (see above).
@@ -49,8 +56,9 @@ Please consider citing the comprehensive **journal version**.
   pages={1-19},
   doi={10.1109/TASE.2023.3328964}}
 ```
-[![Watch the video](./media/screenshot_video.png)](https://www.youtube.com/watch?v=jH2JzviqEhc&list=PLljFMQdU8e8oXW9nBbXu96Wy2fYpFAVUz)
+[![Watch the video](./media/ssmp.gif)](https://www.youtube.com/watch?v=jH2JzviqEhc&list=PLljFMQdU8e8oXW9nBbXu96Wy2fYpFAVUz)
 
+[![Watch the video](./media/pj.gif)](https://www.youtube.com/watch?v=jH2JzviqEhc&list=PLljFMQdU8e8oXW9nBbXu96Wy2fYpFAVUz)
 
 ## MetaGraspNet - Conference Version ([Link to Paper](https://ieeexplore.ieee.org/document/9926427))
 
@@ -227,13 +235,6 @@ For generating parallel grasps based on physics simulation, please fullfill inst
 (rlgpu) python ./physics_simulation/paralleljaw_simulation.py --root ../models/models_ifl/ --visualize --num_envs 16 --categories 008
 ```
 
-
-## Generating Custom Data (coming soon)
-
-We provide scripts which enable you to create your own custom dataset. After successful installation of [Isaac Sim](https://developer.nvidia.com/isaac-sim) Python API, you can start creating custom data with
-```
-(isaac-sim) python ./scripts/dataset_physics.py --categories power_drill --root /home/XYZ/metagraspnet/models --dataset_name models_ifl [--randomize]
-```
 # License
 The dataset is under **CC BY-NC-SA 3.0 license**. You may only use the database for academic purposes. Any kind of commercial or military usage forbidden. For more details [see](https://creativecommons.org/licenses/by-nc-sa/3.0/).
 
